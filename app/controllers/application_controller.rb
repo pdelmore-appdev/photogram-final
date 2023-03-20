@@ -36,5 +36,12 @@ class ApplicationController < ActionController::Base
     render({ :template => "users/show.html.erb" })
   end
 
+  def liked_photos
+@photos = @current_user.photos
+
+  
+    render({ :template => "users/liked_photos.html.erb" })
+  end
+
 
 end

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   
   get("/users/:path_username", { :controller => "application", :action => "show" })
 
+  get("/users/:path_username/liked_photos", { :controller => "application", :action => "liked_photos" })
+
 
   # Routes for the Like resource:
 
@@ -80,6 +82,8 @@ Rails.application.routes.draw do
   
   # DELETE
   get("/delete_photo/:path_id", { :controller => "photos", :action => "destroy" })
+
+  
 
   #------------------------------
 
