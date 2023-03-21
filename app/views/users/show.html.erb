@@ -16,8 +16,18 @@
         Followers
       </dt>
       <dd>
+        <%= @the_user.followrequests.where({ :recipient_id => @current_user.id }) %>
+                <%= @the_user.followrequests.where({ :recipient_id => @current_user.id }) %>
+      </dd>
+
+
+      <dt>
+        <strong>Pending follow requests</strong>
+      </dt>
+      <dd>
         <%= @the_user.followrequests.count %>
       </dd>
+
 
       <dd>
 
