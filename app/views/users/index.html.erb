@@ -46,10 +46,16 @@
           <% if @current_user != nil %>
             <td>
               <% request = FollowRequest.where({ :sender_id => @current_user.id, :recipient_id => a_user.id }).first %>
-              <% if request != nil %>
+              <% if request != nil || request == "accepted" %>
 
-                  <a href="/delete_follow_request/<%= %>">
+                <a href="/delete_follow_request/<%= %>">
                   Unfollow
+                </a>
+
+              <% elsif request != nil || request == "pending" %>
+                Request sent.
+                <a href="/delete_follow_request/<%= %>">
+                  Cancel
                 </a>
 
               <% else %>
