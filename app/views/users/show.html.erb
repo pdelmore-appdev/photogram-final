@@ -19,14 +19,16 @@
         <%= @the_user.receivedfollowrequests.count %>
       </dd>
 
-
       <dt>
         <strong>Pending follow requests</strong>
       </dt>
       <dd>
-        <%= @the_user.receivedfollowrequests %>
-      </dd>
+        <% @list_of_follow_requests.where({ :recipient_id => @current_user.id }).each do |a_follow_request| %>
 
+          <%= a_follow_request.sender.username %>
+
+        <% end %>
+      </dd>
 
       <dd>
 
