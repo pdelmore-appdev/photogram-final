@@ -23,9 +23,15 @@ class FollowRequestsController < ApplicationController
     the_follow_request.sender_id = @current_user.id
 
 # if recipient is private, send status to pending
-# if recipient is NOT provate, send status to accepted
+recipient = User.where({ :id => the_follow_request.recipient_id }).first
 
-    the_follow_request.status = params.fetch("query_status")
+if recipient.private == true
+  the_follow_request.status = "pending"
+else
+  the_follow_request.status = "accepted"
+end
+
+# if recipient is NOT provate, send status to accepted
 
     if the_follow_request.valid?
       the_follow_request.save
