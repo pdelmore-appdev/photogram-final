@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
     @list_of_users = matching_users.order({ :username => :asc })
 
 
+
     render({ :template => "users/index.html.erb" })
   end
 
