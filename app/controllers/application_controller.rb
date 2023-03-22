@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
 
 
 
+
     render({ :template => "users/index.html.erb" })
   end
 
