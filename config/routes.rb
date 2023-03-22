@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get("/users/:path_username/liked_photos", { :controller => "application", :action => "liked_photos" })
 
+  get("/users/:path_username/feed", { :controller => "application", :action => "feed" })
+
 
   # Routes for the Like resource:
 

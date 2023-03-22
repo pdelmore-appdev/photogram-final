@@ -49,4 +49,10 @@ class ApplicationController < ActionController::Base
 
     render({ :template => "users/liked_photos.html.erb" })
   end
+
+  def feed
+
+
+    render({ :template => "users/feed.html.erb" })
+  end
 end
