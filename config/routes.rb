@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get("/users/:path_username/feed", { :controller => "application", :action => "feed" })
 
+  get("/users/:path_username/discover", { :controller => "application", :action => "discover" })
+
 
   # Routes for the Like resource:
 

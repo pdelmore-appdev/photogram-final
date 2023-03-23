@@ -28,6 +28,8 @@ class ApplicationController < ActionController::Base
   end
 
   def show
+
+
     the_username = params.fetch("path_username")
 
     matching_users = User.where({ :username => the_username })
@@ -39,9 +41,11 @@ class ApplicationController < ActionController::Base
 
     @list_of_follow_requests = matching_follow_requests.order({ :created_at => :desc })
 
-
-
+    if @current_user == nil
+      redirect_to("/user_sign_in", { :notice => "You have to sign in first." })
+    else
     render({ :template => "users/show.html.erb" })
+    end
   end
 
   def liked_photos
@@ -55,4 +59,12 @@ class ApplicationController < ActionController::Base
 
     render({ :template => "users/feed.html.erb" })
   end
+
+  def discover
+
+
+    render({ :template => "users/discover.html.erb" })
+  end
+
+
 end
