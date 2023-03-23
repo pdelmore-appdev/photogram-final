@@ -44,7 +44,13 @@
 
   </div>
 
-  <h2>Feed (<%= @current_user.sentfollowrequests.where({ :status => "accepted"}).count %>) </h2>
+  <h2>Feed (<%= @current_user.sentfollowrequests.where({ :status => "accepted"}).count %>) 
+  
+    <% accepted_follows = @current_user.sentfollowrequests.where({ :status => "accepted"}) %>
+      <%= accepted_follows.count %>
+  
+  
+  </h2>
   <div>
     <table border="1">
       <tr>
@@ -73,41 +79,44 @@
         </th>
       </tr>
 
-      <% @current_user.sentfollowrequests.where({ :status => "accepted"}).each do |following| %>
-        <tr>
+      <%# array of follow requests %>
 
-          <%= following.recipient.username  %>
-          <td>
-            <img src="<%=  %>" class="img-responsive">
-          </td>
-
-          <td>
-            <%= following.recipient.photos  %>
-          </td>
-
-          <td>
-            <%= following.recipient.username  %>
-          </td>
-
-          <td>
-            <%=  %>
-          </td>
-          <td>
-            <%=  %>
-          </td>
-
-          <% if @current_user != nil %>
+      <% accepted_follows = @current_user.sentfollowrequests.where({ :status => "accepted"}) %>
+      <% accepted_follows.each do |f| %>
+        <% f.following_photos.each do |p| %>
+          <tr>
             <td>
-              <a href="/photos/<%=  %>">
-                Show details
-              </a>
+              <img src="<%= p.image %>" class="img-responsive">
             </td>
-          <% else %>
+
             <td>
-              <a href="/user_sign_in">
-                Show details
-              </a>
+              <%= p.caption  %>
             </td>
+
+            <td>
+              <%= p.owner.username  %>
+            </td>
+
+            <td>
+              <%=  %>
+            </td>
+            <td>
+              <%=  %>
+            </td>
+
+            <% if @current_user != nil %>
+              <td>
+                <a href="/photos/<%=  %>">
+                  Show details
+                </a>
+              </td>
+            <% else %>
+              <td>
+                <a href="/user_sign_in">
+                  Show details
+                </a>
+              </td>
+            <% end %>
           <% end %>
         </tr>
       <% end %>

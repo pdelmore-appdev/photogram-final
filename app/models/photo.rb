@@ -21,5 +21,7 @@ class Photo < ApplicationRecord
   has_many  :likes, { :class_name => "Like", :foreign_key => "photo_id", :dependent => :destroy }
 
   has_many  :comments, { :class_name => "Comment", :foreign_key => "photo_id", :dependent => :destroy }
+
+  has_one  :associated_followrequest, { :through => :owner, :source => :sentfollowrequests }
   
 end
