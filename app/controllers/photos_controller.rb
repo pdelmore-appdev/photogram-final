@@ -22,6 +22,8 @@ class PhotosController < ApplicationController
   end
 
   def create
+    
+
     the_photo = Photo.new
     the_photo.caption = params.fetch("query_caption")
     the_photo.comments_count = 0
@@ -35,6 +37,7 @@ class PhotosController < ApplicationController
     else
       redirect_to("/photos", { :alert => the_photo.errors.full_messages.to_sentence })
     end
+
   end
 
   def update
