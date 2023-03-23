@@ -45,11 +45,7 @@
   </div>
 
   <h2>Feed (<%= @current_user.sentfollowrequests.where({ :status => "accepted"}).count %>) 
-  
-    <% accepted_follows = @current_user.sentfollowrequests.where({ :status => "accepted"}) %>
-      <%= accepted_follows.count %>
-  
-  
+
   </h2>
   <div>
     <table border="1">

@@ -73,41 +73,44 @@
         </th>
       </tr>
 
-      <% @current_user.sentfollowrequests.where({ :status => "accepted"}).each do |following| %>
-        <tr>
+      <% accepted = @current_user.sentfollowrequests.where({ :status => "accepted"}) %>
+      <% accepted.each do |f| %>
+        <% f.recipient.likes.each do |p| %>
 
-          <%= following.recipient.username  %>
-          <td>
-            <img src="<%=  %>" class="img-responsive">
-          </td>
+          <tr>
 
-          <td>
-            <%= following.recipient.photos  %>
-          </td>
-
-          <td>
-            <%= following.recipient.username  %>
-          </td>
-
-          <td>
-            <%=  %>
-          </td>
-          <td>
-            <%=  %>
-          </td>
-
-          <% if @current_user != nil %>
             <td>
-              <a href="/photos/<%=  %>">
-                Show details
-              </a>
+              <img src="<%= p.photo.image %>" class="img-responsive">
             </td>
-          <% else %>
+
             <td>
-              <a href="/user_sign_in">
-                Show details
-              </a>
+              <%= p.photo.caption %>
             </td>
+
+            <td>
+              <%= p.photo.owner.username %>
+            </td>
+
+            <td>
+              <%= time_ago_in_words(p.photo.created_at) %>
+            </td>
+            <td>
+              <%= p.photo.likes.count %>
+            </td>
+
+            <% if @current_user != nil %>
+              <td>
+                <a href="/photos/<%=  %>">
+                  Show details
+                </a>
+              </td>
+            <% else %>
+              <td>
+                <a href="/user_sign_in">
+                  Show details
+                </a>
+              </td>
+            <% end %>
           <% end %>
         </tr>
       <% end %>
